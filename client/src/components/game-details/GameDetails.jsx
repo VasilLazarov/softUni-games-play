@@ -62,7 +62,7 @@ export default function GameDetails({
                 </div>
             </div>
 
-            <CommentCreate email={email} />
+            <CommentCreate email={email} gameId={gameId} />
         </section>
     );
 }
