@@ -4,20 +4,35 @@ import { Link, useNavigate, useParams } from "react-router";
 import gameService from "../../services/gameService";
 import CommentsShow from "../comments-show/CommentsShow";
 import CommentCreate from "../comment-create/CommentCreate";
+import commentService from "../../services/commentService";
 
 export default function GameDetails({
     email,
 }) {
     const navigate = useNavigate();
     const [game, setGame] = useState({});
+    const [comments, setComments] = useState([]);
     const { gameId } = useParams();
 
+    // useEffect(() => {
+    //     (async () => {
+    //         const result = await gameService.getOne(gameId);
+    //         setGame(result);
+    //     })();
+    // }, [gameId]);
+
     useEffect(() => {
-        (async () => {
-            const result = await gameService.getOne(gameId);
-            setGame(result);
-        })();
+        gameService.getOne(gameId)
+            .then(result => {
+                setGame(result);
+            });
+
+        commentService.getAll(gameId)
+            .then(result => {
+                setComments(result);
+            });
     }, [gameId]);
+
 
     const gameDeleteClickHandler = async () => {
         const hasConfirm = confirm(`Are you sure you want to delete ${game.title} game?`);
@@ -29,6 +44,10 @@ export default function GameDetails({
         await gameService.delete(gameId);
 
         navigate('/games');
+    }
+
+    const commentCreateHandler = (newComment) => {
+        setComments(state => [...state, newComment]);
     }
 
     return (
@@ -46,7 +65,7 @@ export default function GameDetails({
                     {game.summary}
                 </p>
 
-                <CommentsShow />
+                <CommentsShow comments={comments}/>
 
                 {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 <div className="buttons">
@@ -62,7 +81,11 @@ export default function GameDetails({
                 </div>
             </div>
 
-            <CommentCreate email={email} gameId={gameId} />
+            <CommentCreate 
+                email={email} 
+                gameId={gameId} 
+                onCreate={commentCreateHandler}
+            />
         </section>
     );
 }
