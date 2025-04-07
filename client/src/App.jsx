@@ -1,3 +1,5 @@
+import { Route, Routes } from "react-router";
+
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import "./App.css";
@@ -8,13 +10,14 @@ function App() {
             <Header />
 
             <main id="main-content">
-                <Home />
+                <Routes>
+                    {/* path='/' is same as index */}
+                    {/* <Route index element={<Home />} /> */}
+                    <Route path='/' element={<Home />} /> 
+                </Routes>
+
+                
             </main>
-
-
-
-
-
         </div>
     );
 }
