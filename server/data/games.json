@@ -1,0 +1,18 @@
+{
+        "56a63f17-7435-4b41-845f-5798e4459c69": {
+            "title": "Valorant",
+            "category": "FPS",
+            "maxLevel": "498",
+            "imageUrl": "https://freight.cargo.site/w/3840/q/75/i/a17dfc0b27e50cb1c75dcd8fcd13a2d11783729f60265d9a00d184bc5a8d9296/VALORANT_1.png",
+            "summary": "Valorant is a team-based first-person tactical hero shooter set in the near future. Players play as one of a set of Agents, characters based on several countries and cultures around the world. In the main game mode, players are assigned to either the attacking or defending team with each team having five players on it.",
+            "_id": "56a63f17-7435-4b41-845f-5798e4459c69"
+        },
+        "f742d28f-b0a4-4903-ad38-0f3631c298d4": {
+            "title": "Counter Strike 1.6",
+            "category": "FPS",
+            "maxLevel": "100",
+            "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/67/Counter-Strike_Box.jpg",
+            "summary": "Play the world's number 1 online action game. Engage in an incredibly realistic brand of terrorist warfare in this wildly popular team-based game.",
+            "_id": "f742d28f-b0a4-4903-ad38-0f3631c298d4"
+        }
+}
