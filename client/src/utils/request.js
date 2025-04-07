@@ -3,6 +3,7 @@ const request = async (method, url, data) => {
     let options = {
         method,
     };
+
     // if(method !== 'GET'){
     //     options = {
     //         method,

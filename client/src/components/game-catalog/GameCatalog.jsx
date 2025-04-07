@@ -7,10 +7,9 @@ export default function GameCatalog() {
 
     useEffect(() => {
         gameService.getAll()
-        .then(result => {
-            setGames(result);
-            console.log(result);
-        });
+            .then(result => {
+                setGames(result);
+            });
     }, []);
 
     return (
