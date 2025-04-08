@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router";
 import { useState } from "react";
 
+import { UserContext } from "./context/UserContext";
+
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import GameCatalog from "./components/game-catalog/GameCatalog";
@@ -16,28 +18,34 @@ function App() {
 
     const userLoginHandler = (resultData) => {
         setAuthData(resultData);
-    }
+    };
 
     return (
-        <div id="box">
-            <Header />
+        <UserContext.Provider value={{ ...authData, userLoginHandler }}>
+            <div id="box">
+                <Header />
 
-            <main id="main-content">
-                <Routes>
-                    {/* path='/' is same as index */}
-                    {/* <Route index element={<Home />} /> */}
-                    <Route path="/" element={<Home />} /> 
-                    <Route path="/games" element={<GameCatalog />} />
-                    <Route path="/games/create" element={<GameCreate />} />
-                    <Route path="/games/:gameId/details" element={<GameDetails email={authData.email} />} />
-                    <Route path="/games/:gameId/edit" element={<GameEdit />} />
-                    <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
-                    <Route path="/register" element={<Register />} />
-                </Routes>
-
-                
-            </main>
-        </div>
+                <main id="main-content">
+                    <Routes>
+                        {/* path='/' is same as index */}
+                        {/* <Route index element={<Home />} /> */}
+                        <Route path="/" element={<Home />} />
+                        <Route path="/games" element={<GameCatalog />} />
+                        <Route path="/games/create" element={<GameCreate />} />
+                        <Route
+                            path="/games/:gameId/details"
+                            element={<GameDetails />}
+                        />
+                        <Route
+                            path="/games/:gameId/edit"
+                            element={<GameEdit />}
+                        />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Routes>
+                </main>
+            </div>
+        </UserContext.Provider>
     );
 }
 
