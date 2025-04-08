@@ -1,7 +1,38 @@
+import { useNavigate } from "react-router";
+import { useContext } from "react";
+import { useRegister } from "../../api/authApi";
+import { UserContext } from "../../context/UserContext";
+
 export default function Register() {
+    const { register } = useRegister();
+    const { userLoginHandler } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    const registerHandler = async (formData) => {
+        const { email, password} = Object.fromEntries(formData); // Why don't get confirm password directrly from form like email and password
+
+        const confirmPassword = formData.get('confirm-password');
+
+        if(password !== confirmPassword){
+            console.log(password);
+            console.log(confirmPassword);
+            console.log('Password missmatch');
+
+            return;
+        }
+
+        const authData = await register(email, password);
+
+        userLoginHandler(authData);
+
+        navigate('/');
+        // navigate('/login');
+
+    }
+
     return (
         <section id="register-page" className="content auth">
-            <form id="register">
+            <form id="register" action={registerHandler}>
                 <div className="container">
                     <div className="brand-logo"></div>
                     <h1>Register</h1>

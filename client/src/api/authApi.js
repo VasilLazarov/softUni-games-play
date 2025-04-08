@@ -16,7 +16,7 @@ export const useLogin = () => {
 
         // return result;
 
-        return await request.post(
+        return request.post(
             `${baseUrl}/login`, 
             { email, password }, 
             // { signal: abortRef.current.signal }
@@ -34,5 +34,15 @@ export const useLogin = () => {
 
     return {
         login,
+    }
+}
+
+export const useRegister = () => {
+    const register = (email, password) => {
+        return request.post(`${baseUrl}/register`, { email, password});
+    }
+
+    return {
+        register,
     }
 }

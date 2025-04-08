@@ -1,15 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 
 import gameService from "../../services/gameService";
 import CommentsShow from "../comments-show/CommentsShow";
 import CommentCreate from "../comment-create/CommentCreate";
 import commentService from "../../services/commentService";
-import { UserContext } from "../../context/UserContext";
 
 export default function GameDetails() {
     const navigate = useNavigate();
-    const { email } = useContext(UserContext);
+    // const { email } = useContext(UserContext);
     const [game, setGame] = useState({});
     const [comments, setComments] = useState([]);
     const { gameId } = useParams();
@@ -82,7 +81,7 @@ export default function GameDetails() {
             </div>
 
             <CommentCreate 
-                email={email} 
+                // email={email} 
                 gameId={gameId} 
                 onCreate={commentCreateHandler}
             />
