@@ -1,14 +1,12 @@
 // with export if you dont want to use variant with .bind
-const request = async (method, url, data) => {
-    let options = {
-        method,
-    };
+const request = async (method, url, data, options = {}) => {
+    // let options = {
+    //     method,
+    // };
 
-    // if(method !== 'GET'){
-    //     options = {
-    //         method,
-    //     };
-    // }
+    if(method !== 'GET'){
+        options.method = method;
+    }
 
     if(data){
         options = {
