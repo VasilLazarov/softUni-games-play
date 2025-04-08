@@ -44,7 +44,7 @@ export default function Login({
                         id="login-password"
                         name="password"
                     />
-                    <input type="submit" className="btn submit" value="Login" disabled={isPending}/>
+                    <input type="submit" className="btn submit" value="Login" disabled={isPending} />
                     <p className="field">
                         <span>
                             If you don't have profile click <Link to="/register">here</Link>
