@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router";
 
-import gameService from "../../services/gameService";
+// import gameService from "../../services/gameService";
+import { useCreateGame } from "../../api/gameApi";
 
 export default function GameCreate() {
+    const { create: createGame } = useCreateGame();
     const navigate = useNavigate();
 
     const submitAction = async (formData) => {
         const gameData = Object.fromEntries(formData);
 
-        await gameService.create(gameData);
+        // await gameService.create(gameData); //old with jsonstore server, now we use collections server
+        await createGame(gameData);
 
         navigate('/games');
     }
