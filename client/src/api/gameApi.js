@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import request from "../utils/request";
 import { UserContext } from "../context/UserContext";
 
@@ -28,6 +28,20 @@ export default{
         return request.delete(`${baseUrl}/${gameId}`);
     },
 };
+
+export const useGames = () => {
+    const [games, setGames] = useState([]);
+    useEffect(() => {
+        request.get(baseUrl)
+            .then(response => {
+                setGames(response);
+            });
+    }, []);
+
+    return {
+        games,
+    };
+}
 
 export const useCreateGame = () => {
     const { accessToken } = useContext(UserContext);
