@@ -1,13 +1,17 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import commentService from "../../services/commentService";
 import { UserContext } from "../../context/UserContext";
+import useAuth from "../../hooks/useAuth";
 
 export default function CommentCreate({
     // email,
     gameId,
     onCreate,
 }) {
-    const { email } = useContext(UserContext);
+    // const { email } = useContext(UserContext);
+    const { email } = useAuth();
+
+
     const commentAction = async (formData) => {
         const comment = formData.get('comment');
 
