@@ -5,13 +5,15 @@ import gameService from "../../services/gameService";
 import CommentsShow from "../comments-show/CommentsShow";
 import CommentCreate from "../comment-create/CommentCreate";
 import commentService from "../../services/commentService";
+import { useGame } from "../../api/gameApi";
 
 export default function GameDetails() {
     const navigate = useNavigate();
     // const { email } = useContext(UserContext);
-    const [game, setGame] = useState({});
     const [comments, setComments] = useState([]);
     const { gameId } = useParams();
+    // const [game, setGame] = useState({});
+    const { game } = useGame(gameId);
 
     // useEffect(() => {
     //     (async () => {
@@ -21,10 +23,10 @@ export default function GameDetails() {
     // }, [gameId]);
 
     useEffect(() => {
-        gameService.getOne(gameId)
-            .then(result => {
-                setGame(result);
-            });
+        // gameService.getOne(gameId)
+        //     .then(result => {
+        //         setGame(result);
+        //     });
 
         commentService.getAll(gameId)
             .then(result => {

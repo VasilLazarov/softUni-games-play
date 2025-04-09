@@ -6,18 +6,9 @@ import { UserContext } from "../context/UserContext";
 const baseUrl = 'http://localhost:3030/data/games';
 
 export default{
-    async getAll(){
-        const result = await request.get(baseUrl);
-        // const result =  request('GET', baseUrl);
-
-        const games = Object.values(result);
-
-        return games;
-    },
     getOne(gameId){
         return request.get(`${baseUrl}/${gameId}`);
     },
-    // create(gameData) {
     //     return request.post(baseUrl, gameData);
     //     // return request('POST', baseUrl, gameData);
     // },
@@ -38,10 +29,20 @@ export const useGames = () => {
             });
     }, []);
 
-    return {
-        games,
-    };
-}
+    return { games };
+};
+
+export const useGame = (gameId) => {
+    const [game, setGame] = useState({});
+    useEffect(() => {
+        request.get(`${baseUrl}/${gameId}`)
+            .then(response => {
+                setGame(response);
+            });
+    }, [gameId]);
+
+    return { game };
+};
 
 export const useCreateGame = () => {
     const { accessToken } = useContext(UserContext);
@@ -58,4 +59,4 @@ export const useCreateGame = () => {
     return {
         create,
     };
-}
+};
