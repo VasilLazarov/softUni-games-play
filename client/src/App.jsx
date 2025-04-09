@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router";
-import { useState } from "react";
+// import { useState } from "react";
 
 import { UserContext } from "./context/UserContext";
 
@@ -13,9 +13,11 @@ import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Logout from "./components/logout/Logout";
 import "./App.css";
+import usePersistedState from "./hooks/usePersistedState";
 
 function App() {
-    const [authData, setAuthData] = useState({});
+    // const [authData, setAuthData] = useState({});
+    const [authData, setAuthData] = usePersistedState('auth', {});
 
     const userLoginHandler = (resultData) => {
         setAuthData(resultData);

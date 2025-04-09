@@ -3,9 +3,6 @@ import request from "../utils/request";
 const baseUrl = 'http://localhost:3030/jsonstore/comments';
 
 export default{
-    create(email, gameId, comment){
-        return request.post(baseUrl, { email, gameId, comment });
-    },
     async getAll(gameId){
         const result = await request.get(baseUrl);
 
@@ -17,5 +14,8 @@ export default{
         const gameComments = comments.filter(comment => comment.gameId === gameId);
 
         return gameComments;
+    },
+    create(email, gameId, comment){
+        return request.post(baseUrl, { email, gameId, comment });
     }
 }

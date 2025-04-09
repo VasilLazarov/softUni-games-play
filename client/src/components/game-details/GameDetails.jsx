@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+// import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 
 // import gameService from "../../services/gameService";
 import CommentsShow from "../comments-show/CommentsShow";
 import CommentCreate from "../comment-create/CommentCreate";
-import commentService from "../../services/commentService";
+// import commentService from "../../services/commentService";
 import { useDeleteGame, useGame } from "../../api/gameApi";
 import useAuth from "../../hooks/useAuth";
+// import { useComments } from "../../api/commentsApi";
+import { useState } from "react";
 
 export default function GameDetails() {
     const navigate = useNavigate();
@@ -17,6 +19,7 @@ export default function GameDetails() {
     // const [game, setGame] = useState({});
     const { game } = useGame(gameId);
     const { deleteGame } = useDeleteGame();
+    // const { comments } = useComments(gameId);
 
     // useEffect(() => {
     //     (async () => {
@@ -25,16 +28,16 @@ export default function GameDetails() {
     //     })();
     // }, [gameId]);
 
-    useEffect(() => {
-        // gameService.getOne(gameId)
-        //     .then(result => {
-        //         setGame(result);
-        //     });
+    // useEffect(() => {
+    //     // gameService.getOne(gameId)
+    //     //     .then(result => {
+    //     //         setGame(result);
+    //     //     });
 
-        commentService.getAll(gameId).then((result) => {
-            setComments(result);
-        });
-    }, [gameId]);
+    //     commentService.getAll(gameId).then((result) => {
+    //         setComments(result);
+    //     });
+    // }, [gameId]);
 
     const gameDeleteClickHandler = async () => {
         const hasConfirm = confirm(

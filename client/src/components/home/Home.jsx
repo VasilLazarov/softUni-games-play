@@ -4,7 +4,6 @@ import { useLatestGames } from "../../api/gameApi";
 export default function Home() {
     const { latestGames } = useLatestGames();
 
-    console.log(latestGames);
 
     return (
         <section id="welcome-world">
