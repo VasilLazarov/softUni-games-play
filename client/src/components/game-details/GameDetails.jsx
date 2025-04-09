@@ -1,43 +1,22 @@
-// import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 
-// import gameService from "../../services/gameService";
 import CommentsShow from "../comments-show/CommentsShow";
 import CommentCreate from "../comment-create/CommentCreate";
-// import commentService from "../../services/commentService";
 import { useDeleteGame, useGame } from "../../api/gameApi";
 import useAuth from "../../hooks/useAuth";
-// import { useComments } from "../../api/commentsApi";
-import { useState } from "react";
+import { useComments, useCreateComment } from "../../api/commentsApi";
 
 export default function GameDetails() {
     const navigate = useNavigate();
-    // const { email } = useContext(UserContext);
     const { _id: userId } = useAuth();
-    const [comments, setComments] = useState([]);
     const { gameId } = useParams();
-    // const [game, setGame] = useState({});
     const { game } = useGame(gameId);
     const { deleteGame } = useDeleteGame();
-    // const { comments } = useComments(gameId);
+    const { comments } = useComments(gameId);
+    const { create } = useCreateComment();
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const result = await gameService.getOne(gameId);
-    //         setGame(result);
-    //     })();
-    // }, [gameId]);
+    console.log(comments);
 
-    // useEffect(() => {
-    //     // gameService.getOne(gameId)
-    //     //     .then(result => {
-    //     //         setGame(result);
-    //     //     });
-
-    //     commentService.getAll(gameId).then((result) => {
-    //         setComments(result);
-    //     });
-    // }, [gameId]);
 
     const gameDeleteClickHandler = async () => {
         const hasConfirm = confirm(
@@ -48,19 +27,17 @@ export default function GameDetails() {
             return;
         }
 
-        // await gameService.delete(gameId);
         await deleteGame(gameId);
 
         navigate("/games");
     };
 
-    const commentCreateHandler = (newComment) => {
-        setComments((state) => [...state, newComment]);
+    const commentCreateHandler = async (comment) => {
+        await create(gameId, comment);
     };
 
     const isOwner = userId === game._ownerId;
-    // console.log(userId);
-    // console.log(game.ownerId);
+
 
     return (
         <section id="game-details">
@@ -77,7 +54,6 @@ export default function GameDetails() {
 
                 <CommentsShow comments={comments} />
 
-                {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
                 {isOwner && (
                     <div className="buttons">
                         <Link to={`/games/${gameId}/edit`} className="button">
@@ -95,7 +71,7 @@ export default function GameDetails() {
 
             <CommentCreate
                 // email={email}
-                gameId={gameId}
+                // gameId={gameId}
                 onCreate={commentCreateHandler}
             />
         </section>

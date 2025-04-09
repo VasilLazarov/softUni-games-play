@@ -7,14 +7,14 @@ export default function useAuth() {
 
 
     const requestWrapper = (method, url, data, options = {}) => {
-        const optionsWrapper = {
+        const authOptions = {
             ...options,
             headers: {
                 "X-Authorization": authData.accessToken,
                 ...options.headers,
             },
         };
-        return request.baseRequest(method, url, data, optionsWrapper);
+        return request.baseRequest(method, url, data, authData.accessToken ? authOptions : options);
     };
 
     return {

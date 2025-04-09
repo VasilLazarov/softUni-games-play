@@ -28,9 +28,16 @@ export default function GameEdit() {
         navigate(`/games/${gameId}/details`);
     }
 
+    // console.log(userId);
+    // console.log(gameId);
+    // console.log(game._ownerId);
     const isOwner = userId === game._ownerId;
+    // console.log(isOwner);
     if (!isOwner){
-        return <Navigate to="/games" />;
+        // console.log("Ne vlizam");
+        // navigate("/games");
+        // return;
+        // return <Navigate to="/games" />;
     }
 
     return (
