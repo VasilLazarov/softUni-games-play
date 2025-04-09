@@ -30,7 +30,7 @@ export default function GameEdit() {
 
     const isOwner = userId === game._ownerId;
     if (!isOwner){
-        return <Navigate to="edit" />;
+        return <Navigate to="/games" />;
     }
 
     return (

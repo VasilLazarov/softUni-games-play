@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router";
-// import { useState } from "react";
 
 import UserProvider from "./providers/userProvider";
 
@@ -13,6 +12,7 @@ import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Logout from "./components/logout/Logout";
 import AuthGuard from "./components/guards/AuthGuard";
+import GuestGuard from "./components/guards/GuestGuard";
 import "./App.css";
 
 function App() {
@@ -35,8 +35,10 @@ function App() {
                             <Route path="/games/:gameId/edit" element={<GameEdit />} />
                             <Route path="/logout" element={<Logout />} />
                         </Route>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+                        <Route element={<GuestGuard />}>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                        </Route>
                     </Routes>
                 </main>
             </div>
