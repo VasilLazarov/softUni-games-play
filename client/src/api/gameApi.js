@@ -60,3 +60,23 @@ export const useDeleteGame = () => {
 
     return { deleteGame };
 };
+
+export const useLatestGames = () => {
+    // const PAGE_SIZE = 3;
+    const [latestGames, setLatestsGames] = useState([]);
+
+    
+    useEffect(() => {
+        const searchParams = new URLSearchParams({
+            sortBy: '_createdOn desc',
+            pageSize: 3,
+            select: '_id,imageUrl,title'
+        });
+        request.get(`${baseUrl}?${searchParams.toString()}`)
+            .then(response => {
+                setLatestsGames(response);
+            });
+    }, []);
+
+    return { latestGames };
+};

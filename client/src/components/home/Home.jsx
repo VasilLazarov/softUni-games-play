@@ -1,4 +1,11 @@
+import { Link } from "react-router";
+import { useLatestGames } from "../../api/gameApi";
+
 export default function Home() {
+    const { latestGames } = useLatestGames();
+
+    console.log(latestGames);
+
     return (
         <section id="welcome-world">
             <div className="welcome-message">
@@ -9,65 +16,34 @@ export default function Home() {
 
             <div id="home-page">
                 <h1>Latest Games</h1>
-
                 {/* <!-- Display div: with information about every game (if any) --> */}
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="/images/CoverFire.png" />
+                {latestGames.map(game => (
+                    <div className="game" key={game._id}>
+                        <div className="image-wrap">
+                            <img src={game.imageUrl} />
+                        </div>
+                        <h3>{game.title}</h3>
+                        <div className="rating">
+                            <span>☆</span>
+                            <span>☆</span>
+                            <span>☆</span>
+                            <span>☆</span>
+                            <span>☆</span>
+                        </div>
+                        <div className="data-buttons">
+                            <Link
+                                to={`/games/${game._id}/details`}
+                                className="btn details-btn"
+                            >
+                                Details
+                            </Link>
+                        </div>
                     </div>
-                    <h3>Cover Fire</h3>
-                    <div className="rating">
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="#" className="btn details-btn">
-                            Details
-                        </a>
-                    </div>
-                </div>
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="/images/ZombieLang.png" />
-                    </div>
-                    <h3>Zombie Lang</h3>
-                    <div className="rating">
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="#" className="btn details-btn">
-                            Details
-                        </a>
-                    </div>
-                </div>
-                <div className="game">
-                    <div className="image-wrap">
-                        <img src="/images/MineCraft.png" />
-                    </div>
-                    <h3>MineCraft</h3>
-                    <div className="rating">
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                        <span>☆</span>
-                    </div>
-                    <div className="data-buttons">
-                        <a href="#" className="btn details-btn">
-                            Details
-                        </a>
-                    </div>
-                </div>
-
-                {/* <!-- Display paragraph: If there is no games  --> */}
-                <p className="no-articles">No games yet</p>
+                ))}
+                ;{/* <!-- Display paragraph: If there is no games  --> */}
+                {latestGames.length === 0 && (
+                    <p className="no-articles">No games yet</p>
+                )}
             </div>
         </section>
     );
