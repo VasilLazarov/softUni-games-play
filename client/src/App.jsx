@@ -28,18 +28,15 @@ function App() {
                         {/* <Route index element={<Home />} /> */}
                         <Route path="/" element={<Home />} />
                         <Route path="/games" element={<GameCatalog />} />
-                        <Route path="/games/create" element={<GameCreate />} />
-                        <Route
-                            path="/games/:gameId/details"
-                            element={<GameDetails />}
-                        />
-                        <Route
-                            path="/games/:gameId/edit"
-                            element={<GameEdit />}
-                        />
+                        <Route path="/games/:gameId/details"element={<GameDetails />} />
+                        {/* <Route path="/games/create" element={<AuthGuard><GameCreate /></AuthGuard>} />    It's not practic to use AuthGuard like this*/}
+                        <Route element={<AuthGuard />}>
+                            <Route path="/games/create" element={<GameCreate />} />
+                            <Route path="/games/:gameId/edit" element={<GameEdit />} />
+                            <Route path="/logout" element={<Logout />} />
+                        </Route>
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/logout" element={<Logout />} />
                     </Routes>
                 </main>
             </div>
