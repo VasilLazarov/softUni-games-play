@@ -1649,7 +1649,20 @@
     			_createdOn: 1616237272948,
     			_updatedOn: 1616237293676
     		}
-    	}
+    	},
+        games: [
+            {
+                "title": "Valorant",
+                "category": "FPS",
+                "maxLevel": "497",
+                "imageUrl": "https://freight.cargo.site/w/3840/q/75/i/a17dfc0b27e50cb1c75dcd8fcd13a2d11783729f60265d9a00d184bc5a8d9296/VALORANT_1.png",
+                "summary": "Valorant is a team-based first-person tactical hero shooter set in the near future. Players play as one of a set of Agents, characters based on several countries and cultures around the world. In the main game mode, players are assigned to either the attacking or defending team with each team having five players on it.",
+                "_id": "ad22301d-84a1-4101-9135-f65e7dd3c258",
+                "_createdOn": 1744170300918,
+                "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                "_updatedOn": 1744175794592
+            }
+        ]
     };
     var rules$1 = {
     	users: {
