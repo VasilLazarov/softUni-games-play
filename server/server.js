@@ -1661,6 +1661,26 @@
                 "_createdOn": 1744170300918,
                 "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
                 "_updatedOn": 1744175794592
+            },
+            {
+                "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                "title": "Counter Strike 1.6",
+                "category": "FPS",
+                "maxLevel": "100",
+                "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/67/Counter-Strike_Box.jpg",
+                "summary": "Play the world's number 1 online action game. Engage in an incredibly realistic brand of terrorist warfare in this wildly popular team-based game.",
+                "_createdOn": 1744177306129,
+                "_id": "74252550-b668-422c-8f73-2846b6a189a3"
+            },
+            {
+                "_ownerId": "60f0cf0b-34b0-4abd-9769-8c42f830dffc",
+                "title": "NFS Underground 2",
+                "category": "Racing",
+                "maxLevel": "200",
+                "imageUrl": "https://assets-prd.ignimgs.com/2022/01/21/need-for-speed-underground-2-button-crop-1642797115202.jpg",
+                "summary": "Need for Speed: Underground 2 is a 2004 racing video game developed by EA Black Box and published by Electronic Arts.",
+                "_createdOn": 1744177355189,
+                "_id": "e5f8201b-c856-4167-bd72-b6a9fc6fae2c"
             }
         ]
     };
